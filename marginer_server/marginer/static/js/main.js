@@ -73,4 +73,51 @@ function setCharts(data){
 	};
 	temp_chart = echarts.init($('#temp_div')[0]);
 	temp_chart.setOption(option);
+	
+	hum_option = {
+	    title : {
+	        text: '湿度变化',
+	        subtext: '室内湿度相关内容'
+	    },
+	    tooltip : {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data:['湿度']
+	    },
+	    toolbox: {
+	        show : true,
+	        feature : {
+	            dataZoom: {},
+	            dataView: {readOnly: false},
+	            magicType: {type: ['line', 'bar']},
+	            restore: {},
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis : [
+	        {
+	            type : 'category',
+	            boundaryGap : false,
+	            data : data.time
+	        }
+	    ],
+	    yAxis : [
+	        {
+	            type : 'value',
+	            axisLabel : {
+	                formatter: '{value} %'
+	            }
+	        }
+	    ],
+	    series : [
+	        {
+	            name:'室内湿度',
+	            type:'line',
+	            data:data.humidity
+	        }
+	    ]
+	};
+	hum_chart = echarts.init($('#humidity_div')[0]);
+	hum_chart.setOption(hum_option);
 }
