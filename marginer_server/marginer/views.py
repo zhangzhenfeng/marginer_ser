@@ -21,7 +21,6 @@ def get_sp_date(request):
     # 组织温度数据 {"cpu":[],"gpu":[],"house":[],"time":[]}
     temp_info = {"cpu":[],"gpu":[],"house":[],"humidity":[],"disk":[],"ram":[],"time":[]}
     for al in all_info:
-        print str(al[8])
         # 温度相关
         temp_info["time"].append(str(al[8])[-8:])
         temp_info["cpu"].append(al[3])
@@ -32,7 +31,7 @@ def get_sp_date(request):
         temp_info["humidity"].append(al[2])
         
         # 内存使用率
-        temp_info["ram"].append(al[6])
+        temp_info["ram"].append(eval(al[6])[2]*100)
         
         # 磁盘使用率
         temp_info["disk"].append(al[7])

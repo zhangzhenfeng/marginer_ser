@@ -83,7 +83,7 @@ function setCharts(data){
 	        trigger: 'axis'
 	    },
 	    legend: {
-	        data:['湿度']
+	        data:['室内湿度']
 	    },
 	    toolbox: {
 	        show : true,
@@ -120,4 +120,51 @@ function setCharts(data){
 	};
 	hum_chart = echarts.init($('#humidity_div')[0]);
 	hum_chart.setOption(hum_option);
+	
+	ram_option = {
+	    title : {
+	        text: '内存使用率',
+	        subtext: '内存使用率相关内容'
+	    },
+	    tooltip : {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data:['内存使用率']
+	    },
+	    toolbox: {
+	        show : true,
+	        feature : {
+	            dataZoom: {},
+	            dataView: {readOnly: false},
+	            magicType: {type: ['line', 'bar']},
+	            restore: {},
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis : [
+	        {
+	            type : 'category',
+	            boundaryGap : false,
+	            data : data.time
+	        }
+	    ],
+	    yAxis : [
+	        {
+	            type : 'value',
+	            axisLabel : {
+	                formatter: '{value} %'
+	            }
+	        }
+	    ],
+	    series : [
+	        {
+	            name:'内存使用率',
+	            type:'line',
+	            data:data.ram
+	        }
+	    ]
+	};
+	ram_chart = echarts.init($('#ram_div')[0]);
+	ram_chart.setOption(ram_option);
 }
